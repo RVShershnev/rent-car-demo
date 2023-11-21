@@ -1,5 +1,6 @@
 package com.wavesenterprise.api
 
+import com.wavesenterprise.domain.Car
 import com.wavesenterprise.sdk.contract.api.annotation.ContractAction
 import com.wavesenterprise.sdk.contract.api.annotation.ContractInit
 import com.wavesenterprise.sdk.contract.api.annotation.InvokeParam
@@ -7,10 +8,22 @@ import com.wavesenterprise.sdk.contract.api.annotation.InvokeParam
 interface RentCarContract {
 
     @ContractInit
-    fun initRent() // Метод вызова 103 транзакции (CreateContractTx)
+    fun initRent()
 
     @ContractAction
-    fun setRentContractCreator(
-        @InvokeParam("rentContractCreator") rentContractCreator: String
-    ) // Метод вызова 104 транзакции (CallContractTx)
+    fun rentCar(@InvokeParam("carNumber") carNumber: String)
+
+    @ContractAction
+    fun createCar(@InvokeParam("car") car: Car)
+
+    @ContractAction
+    fun changeCarRenter(
+        @InvokeParam("carNumber") carNumber: String,
+        @InvokeParam("carRenter") carRenter: String,
+    )
+
+    @ContractAction
+    fun setBlackListContract(
+        @InvokeParam("contractId") contractId: String,
+    )
 }

@@ -17,4 +17,5 @@ pluginManagement {
 rootProject.name = "rent-car-demo"
 include(
     "rent-car-contract",
+    "black-list-contract"
 )
